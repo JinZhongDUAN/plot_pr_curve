@@ -65,11 +65,7 @@ def PR(configs, results, labels, out):
 
     for config, result, label in zip(configs, results, labels):
         precisions = getPRArray(config, result)
-        # if label == labels[8]:
-        #     mean_precisions = compute_average_precision(precisions)
-        #     mean_precisions[x > threshold] += 0.01
-        # else:
-        #     mean_precisions = compute_average_precision(precisions)
+        
         mean_precisions = compute_average_precision(precisions)
         smoothed_curve = smooth_curve(mean_precisions, window_size=11, order=3)
         plt.plot(x, smoothed_curve, label=label)
